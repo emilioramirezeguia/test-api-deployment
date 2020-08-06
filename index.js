@@ -1,9 +1,12 @@
+require("dotenv").config(); // if there is a .env file on the root folder it will merge it into process.env
+
 const express = require("express");
 
 const server = express();
 
 server.get("/", (req, res) => {
-  res.status(200).json({ message: "It's working... it's working!!!" });
+  const message = process.env.MESSAGE || "It's working!";
+  res.status(200).json({ message });
 });
 
 const port = process.env.PORT || 5000;
